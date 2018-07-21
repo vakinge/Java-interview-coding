@@ -1,37 +1,17 @@
 # Java-interview-coding
 
-#### 项目介绍
-整理java面试一些高级功能应用
+#### 初衷
+近几年算起来也面试了不少人(至少三位数)，有初出茅庐的小伙子也有工作10年+的资深架构师，遗憾的是真正对java本身得心应手的少之又少，算的上精通的更是聊胜于无。大部分都是知其然不知所以然（也许那些精通java的都去大厂面试了吧）。于是乎，我按我近年来的java笔记整理了一份面向编码的面试题库，也算是多年心血物尽所用，希望对新鸟老鸟有所帮助。
 
-#### 软件架构
-软件架构说明
-
-
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
-
-1. Fork 本项目
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
-
-
-#### 码云特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [http://git.mydoc.io/](http://git.mydoc.io/)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+#### 目录
+ - 集合
+ - io
+  - bio
+  - nio
+  - aio
+  - 本地io
+ - 并发包
+ - java8
+ - 算法
+  - 排序算法
+  - 经典算法题
