@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
@@ -16,7 +16,6 @@ public class ChatRoomNIOClient {
 
 	private Selector selector = null;
 	static final int port = 9999;
-	private Charset charset = Charset.forName("UTF-8");
 	private SocketChannel sc = null;
 	private String name;
 	private static String SPILITER = ":";
@@ -34,17 +33,18 @@ public class ChatRoomNIOClient {
 		new Thread(new ClientThread()).start();
 		
 		System.out.println(">>>当前系统分配用户名:"+this.name);
-		sc.write(charset.encode(this.name));
+		//发送用户名到server完成注册
+		sc.write(StandardCharsets.UTF_8.encode(this.name));
 		
 		// 在主线程中 从键盘读取数据输入到服务器端
 		Scanner scan = new Scanner(System.in);
 		while (scan.hasNextLine()) {
 			String line = scan.nextLine();
 			if ("".equals(line)){				
-				continue; // 不允许发空消息
+				continue;
 			}
 			line = name + SPILITER + line;
-			sc.write(charset.encode(line));
+			sc.write(StandardCharsets.UTF_8.encode(line));
 		}
 
 	}
@@ -75,20 +75,22 @@ public class ChatRoomNIOClient {
 				SocketChannel sc = (SocketChannel) sk.channel();
 
 				ByteBuffer buff = ByteBuffer.allocate(1024);
-				String content = "";
+				StringBuilder content = new StringBuilder();
 				while (sc.read(buff) > 0) {
 					buff.flip();
-					content += charset.decode(buff);
+					content.append(StandardCharsets.UTF_8.decode(buff));
 				}
 				
 				if(content.length() == 0){
 					sc.close();
 					return ;
 				}
-				if("SUCCESSED".equals(content)){
-					content = "[系统消息]:进入聊天室成功，可以开始聊天了";
+				
+				String message = content.toString();
+				if("SUCCESSED".equals(message)){
+					message = "[系统消息]:进入聊天室成功，可以开始聊天了";
 				}
-				System.out.println(content);
+				System.out.println(message);
 				sk.interestOps(SelectionKey.OP_READ);
 			}
 		}
@@ -97,7 +99,7 @@ public class ChatRoomNIOClient {
 	private void generateName(){
 		char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
 		StringBuilder nameBf = new StringBuilder(6);
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 6; i++) {
 			nameBf.append(chars[Math.abs(new Random().nextInt(chars.length))]);
 		}
 		this.name = nameBf.toString();
