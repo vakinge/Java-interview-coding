@@ -2,6 +2,12 @@ package io.vakin.algorithm.sort;
 
 import java.util.Arrays;
 
+/**
+ * 希尔排序
+ * @description <br>
+ * @author <a href="mailto:vakinge@gmail.com">vakin</a>
+ * @date 2018年8月14日
+ */
 public class ShellSort {
     public static void main(String []args){
         int []arr ={1,4,2,7,9,8,3,6};
