@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author <a href="mailto:vakinge@gmail.com">vakin</a>
  * @date 2018年7月27日
  */
-public class ThreadPool {
+public class ThreadPoolTest {
 
 	public static void main(String[] args) {
 
