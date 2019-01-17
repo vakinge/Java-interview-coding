@@ -2,6 +2,7 @@ package io.vakin.java8;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -85,6 +86,21 @@ public class StreamTest {
 		names = persons.parallelStream().collect(personNameCollector);
 
 		System.out.println(names);
+	}
+	
+	private static void testFindMax(){
+		List<Integer> intlist = Arrays.asList(1,2,3,4,5,6);
+		//error
+        int maxId = intlist.stream().max(Integer::max).get();
+        System.out.println("maxId = " + maxId);
+        
+        //right
+        maxId = intlist.stream().mapToInt(Integer::intValue).max().getAsInt();
+        System.out.println("maxId = " + maxId);
+
+        //right
+        maxId = intlist.stream().max(Comparator.comparing(Integer::intValue)).get();
+        System.out.println("maxId = " + maxId);
 	}
 
 	static class Person {

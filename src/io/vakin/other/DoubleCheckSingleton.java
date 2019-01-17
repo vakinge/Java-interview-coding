@@ -1,4 +1,4 @@
-package io.vakin.base;
+package io.vakin.other;
 
 
 /**
